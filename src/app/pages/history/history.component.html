@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row">
+    <div *ngIf="history?.length" class="col-12">
+      <p>Minimalna: {{minTemp| number:'1.0-0'}}℃</p>
+      <p>Maksymalna: {{maxTemp| number:'1.0-0'}}℃</p>
+      <p>Średnia: {{averageTemp | number:'1.0-0'}}℃</p>
+      <p>Najczęściej wyszukiwanie miasto: {{mostCommonCity}}</p>
+      <p>Ilość łącznych wyszukiwani: {{history.length}}</p>
+    </div>
+
+    <div class="col-12">
+      <table class="table" mat-table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element">{{element.name}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef>Description</th>
+          <td mat-cell *matCellDef="let element">{{element.description}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="coords">
+          <th mat-header-cell *matHeaderCellDef>Coords</th>
+          <td mat-cell *matCellDef="let element">{{element.lat }}, {{element.lng}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="temp">
+          <th mat-header-cell *matHeaderCellDef>Temp</th>
+          <td mat-cell *matCellDef="let element">{{element.temp|number:'1.0-0'}}℃</td>
+        </ng-container>
+
+        <ng-container matColumnDef="timestamp">
+          <th mat-header-cell *matHeaderCellDef>Searched at</th>
+          <td mat-cell *matCellDef="let element">{{element.timestamp | date:'medium'}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="windSpeed">
+          <th mat-header-cell *matHeaderCellDef>Wind speed</th>
+          <td mat-cell *matCellDef="let element">{{element.windSpeed }}m/s</td>
+        </ng-container>
+
+        <ng-container matColumnDef="cloud">
+          <th mat-header-cell *matHeaderCellDef>Cloud</th>
+          <td mat-cell *matCellDef="let element">{{element.cloud }}%</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[10, 20, 30]"
+                     showFirstLastButtons
+                     aria-label="Select page of periodic elements">
+      </mat-paginator>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>{{weatherData.name}}</h1>
+<div mat-dialog-content>
+  <p>Name: {{weatherData.name}}</p>
+  <p>Description: {{weatherData.description}}</p>
+  <p>Coords: {{weatherData.lat }}, {{weatherData.lng}}</p>
+  <p>Temp: {{weatherData.temp|number:'1.0-0'}}℃</p>
+  <p>Searched at: {{weatherData.timestamp | date:'medium'}}</p>
+  <p>Wind speed: {{weatherData.windSpeed }}m/s</p>
+  <p>Cloud: {{weatherData.cloud }}%</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close cdkFocusInitial>Ok</button>
+</div>
